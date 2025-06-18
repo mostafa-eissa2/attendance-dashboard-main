@@ -1,0 +1,220 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <title>تسجيل الحضور</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cairo&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        font-family: "Cairo", sans-serif;
+        background-color: #f0f2f5;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+      }
+      .form-container {
+        background-color: #fff;
+        padding: 30px;
+        border-radius: 15px;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        width: 100%;
+        max-width: 400px;
+        text-align: center;
+      }
+      .form-container img {
+        width: 212px;
+        margin-bottom: 10px;
+      }
+      h2 {
+        margin-bottom: 20px;
+      }
+      input,
+      select {
+        width: 100%;
+        padding: 12px;
+        margin: 10px 0;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        font-size: 16px;
+      }
+      button {
+        width: 100%;
+        padding: 12px;
+        background-color: #28a745;
+        color: #fff;
+        font-size: 18px;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+      }
+      button:hover {
+        background-color: #218838;
+      }
+      .success-message {
+        display: none;
+        margin-top: 15px;
+        font-size: 18px;
+        color: #28a745;
+        font-weight: bold;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="form-container">
+      <img src="TURNKEY.png" alt="TURNKEY Logo" />
+      <h2>نموذج تسجيل الحضور اليومى</h2>
+
+      <form id="attendanceForm">
+        <input
+          type="text"
+          name="fullName"
+          placeholder="الاسم بالكامل"
+          required
+        />
+        <input type="text" name="jobTitle" placeholder="الوظيفة" required />
+        <select name="employmentType" required>
+          <option value="">-- نوع التعيين --</option>
+          <option value="سويدى">سويدى</option>
+          <option value="بروفيشنال">بروفيشنال</option>
+          <option value="الضحى">الضحى</option>
+        </select>
+        <select name="department" required>
+          <option value="">-- القسم --</option>
+          <option value="قسم تنفيذ الكهرباء">قسم تنفيذ الكهرباء</option>
+          <option value="قسم تنفيذ المدنى">قسم تنفيذ المدنى</option>
+          <option value="قسم الجودة">قسم الجودة</option>
+          <option value="قسم المخازن">قسم المخازن</option>
+          <option value="قسم الصيانة">قسم الصيانة</option>
+          <option value="قسم المساحة">قسم المساحة</option>
+          <option value="قسم السلامة والصحة المهنية">
+            قسم السلامة والصحة المهنية
+          </option>
+          <option value="الشؤون القانونية">الشؤون القانونية</option>
+          <option value="مكتب فنى">مكتب فنى</option>
+          <option value="الإداريين">الإداريين</option>
+          <option value="المحاسبين">المحاسبين</option>
+          <option value="DC">DC</option>
+          <option value="خدمات مساعدة">خدمات مساعدة</option>
+          <option value="السائقين">السائقين</option>
+        </select>
+        <select name="project" required>
+          <option value="">-- اسم المشروع --</option>
+          <option value="التحكم الاقليمي">التحكم الاقليمي</option>
+          <option value="الحي الحكومي">الحي الحكومي</option>
+          <option value="الحي الدبلوماسي">الحي الدبلوماسي</option>
+          <option value="العلمين">العلمين</option>
+          <option value="الفردوس">الفردوس</option>
+          <option value="القاهرة 500">القاهرة 500</option>
+          <option value="الكيان العسكري">الكيان العسكري</option>
+          <option value="المنصورية">المنصورية</option>
+          <option value="حياة كريمة الفيوم">حياة كريمة الفيوم</option>
+          <option value="حياة كريمة المنيا">حياة كريمة المنيا</option>
+          <option value="حياة كريمة أرمنت">حياة كريمة أرمنت</option>
+          <option value="حياة كريمة أسنا">حياة كريمة أسنا</option>
+          <option value="حياة كريمة أسوان">حياة كريمة أسوان</option>
+          <option value="حياة كريمة زفتي">حياة كريمة زفتي</option>
+          <option value="حياة كريمة صدفا">حياة كريمة صدفا</option>
+          <option value="حياة كريمة مطوبس">حياة كريمة مطوبس</option>
+          <option value="حياة كريمة منفلوط">حياة كريمة منفلوط</option>
+          <option value="دهشور">دهشور</option>
+          <option value="سانت كاترين">سانت كاترين</option>
+          <option value="مونوريل زايد">مونوريل زايد</option>
+          <option value="ميناء الدخيلة">ميناء الدخيلة</option>
+          <option value="سوهاج">سوهاج</option>
+          <option value="كفر غطاطي">كفر غطاطي</option>
+          <option value="أبوقير">أبوقير</option>
+          <option value="السويس">السويس</option>
+          <option value="العاشر من رمضان">العاشر من رمضان</option>
+          <option value="جردينا">جردينا</option>
+          <option value="العبور">العبور</option>
+        </select>
+
+        <!-- حقل مخفي لإحداثيات الموقع -->
+        <input type="hidden" name="geoLocation" id="geoLocation" />
+
+        <button type="submit">تسجيل</button>
+      </form>
+
+      <div class="success-message" id="successMessage">✔ تم التسجيل بنجاح</div>
+    </div>
+    <script>
+      const form = document.getElementById("attendanceForm");
+      const successMessage = document.getElementById("successMessage");
+      const geoLocationInput = document.getElementById("geoLocation");
+
+      let deviceId = localStorage.getItem("deviceId");
+      if (!deviceId) {
+        deviceId = crypto.randomUUID();
+        localStorage.setItem("deviceId", deviceId);
+      }
+
+      // أضف حقل معرف الجهاز مرة واحدة
+      const deviceIdInput = document.createElement("input");
+      deviceIdInput.type = "hidden";
+      deviceIdInput.name = "deviceId";
+      deviceIdInput.value = deviceId;
+      form.appendChild(deviceIdInput);
+
+      function requestLocation() {
+        if (!navigator.geolocation) {
+          alert("المتصفح لا يدعم الحصول على الموقع الجغرافي.");
+          return;
+        }
+        navigator.geolocation.getCurrentPosition(
+          (position) => {
+            const lat = position.coords.latitude.toFixed(6);
+            const lng = position.coords.longitude.toFixed(6);
+            geoLocationInput.value = `${lat},${lng}`;
+          },
+          (error) => {
+            alert("تعذر الحصول على الموقع الجغرافي. الرجاء السماح للموقع.");
+            geoLocationInput.value = "";
+          },
+        );
+      }
+
+      requestLocation();
+
+      form.addEventListener("submit", async (e) => {
+        e.preventDefault();
+
+        if (!geoLocationInput.value) {
+          alert("يرجى السماح بالوصول إلى الموقع الجغرافي قبل التسجيل.");
+          return;
+        }
+
+        const formData = new FormData(form);
+        const data = Object.fromEntries(formData.entries());
+
+        try {
+          const res = await fetch("/submit", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(data),
+          });
+
+          if (res.ok) {
+            successMessage.style.display = "block";
+            form.reset();
+            requestLocation();
+            setTimeout(() => {
+              successMessage.style.display = "none";
+            }, 3000);
+          } else {
+            alert("حدث خطأ أثناء الإرسال، حاول مرة أخرى.");
+          }
+        } catch (err) {
+          alert("فشل الاتصال بالخادم.");
+        }
+      });
+    </script>
+  </body>
+</html>

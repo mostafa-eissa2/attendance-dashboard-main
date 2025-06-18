@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>لوحة التحكم</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style>
+      body {
+        font-family: "Cairo", sans-serif;
+        margin: 0;
+        padding: 20px;
+        background-color: #f0f2f5;
+      }
+      .top-bar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 20px;
+        flex-direction: row-reverse;
+      }
+      .logo-container img {
+        width: 120px;
+      }
+      .btns {
+        display: flex;
+        gap: 10px;
+      }
+      button {
+        padding: 10px 20px;
+        font-size: 16px;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        color: white;
+      }
+      .export-btn {
+        background-color: #28a745;
+      }
+      .delete-btn {
+        background-color: #dc3545;
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        background-color: white;
+      }
+      th,
+      td {
+        border: 1px solid #ccc;
+        padding: 10px;
+        text-align: center;
+      }
+      th {
+        background-color: #28a745;
+        color: white;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="top-bar">
+      <div class="logo-container">
+        <img src="TURNKEY.png" alt="TURNKEY Logo" style="width: 212px" />
+      </div>
+      <div class="btns">
+        <button class="export-btn" onclick="exportExcel()">تحميل Excel</button>
+        <button class="delete-btn" onclick="deleteData()">مسح البيانات</button>
+      </div>
+    </div>
+
+    <table id="data-table">
+      <thead>
+        <tr>
+          <th>الاسم</th>
+          <th>الوظيفة</th>
+          <th>نوع التعيين</th>
+          <th>القسم</th>
+          <th>اسم المشروع</th>
+          <th>الموقع الجغرافي</th>
+          <th>تاريخ</th>
+          <th>وقت</th>
+          <th>نوع الجهاز</th>
+          <th>IP الجهاز</th>
+          <th>معرف الجهاز</th>
+          <!-- عمود جديد -->
+        </tr>
+      </thead>
+      <tbody id="table-body"></tbody>
+
+      <tbody id="table-body">
+        <!-- البيانات تملأ من السيرفر -->
+      </tbody>
+    </table>
+
+    <script>
+      async function fetchData() {
+        try {
+          const res = await fetch("/data");
+          const data = await res.json();
+          const body = document.getElementById("table-body");
+          body.innerHTML = "";
+          data.forEach((row) => {
+            const tr = document.createElement("tr");
+            tr.innerHTML = `
+              <td>${row.fullName}</td>
+              <td>${row.jobTitle}</td>
+              <td>${row.employmentType}</td>
+              <td>${row.department}</td>
+              <td>${row.project}</td>
+              <td>${row.location}</td>
+              <td>${row.date}</td>
+              <td>${row.time}</td>
+              <td>${row.device}</td>
+              <td>${row.ip}</td> <!-- عرض IP -->
+              <td>${row.deviceId}</td>
+
+            `;
+            body.appendChild(tr);
+          });
+        } catch (err) {
+          alert("حدث خطأ أثناء جلب البيانات");
+        }
+      }
+
+      function exportExcel() {
+        window.location.href = "/export";
+      }
+
+      function deleteData() {
+        if (confirm("هل أنت متأكد أنك تريد مسح جميع البيانات؟")) {
+          fetch("/delete", { method: "DELETE" }).then((res) => {
+            if (res.ok) {
+              alert("تم مسح البيانات بنجاح");
+              fetchData();
+            } else {
+              alert("حدث خطأ أثناء المسح");
+            }
+          });
+        }
+      }
+
+      fetchData();
+    </script>
+  </body>
+</html>
